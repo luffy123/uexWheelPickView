@@ -23,6 +23,7 @@ public class ACWheelPickView extends FrameLayout {
     private static final String TAG = "ACWheelPickView";
     private EUEXWheelPickView mUexBaseObj;
     private Button mCompleteBttn;
+    private Button mCancelBttn;
     private PickerView mProvinceView;
     private PickerView mCityView;
     private PickerView mDistrictView;
@@ -58,6 +59,13 @@ public class ACWheelPickView extends FrameLayout {
     private void initView() {
         CRes.init(mContext);
         LayoutInflater.from(mContext).inflate(CRes.plugin_wheelpickview_layout, this, true);
+        mCancelBttn = (Button) findViewById(CRes.plugin_wheelpickview_cancel);
+        mCancelBttn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                mUexBaseObj.close(null);
+            }
+        });
         mCompleteBttn = (Button) findViewById(CRes.plugin_wheelpickview_complete);
         mCompleteBttn.setOnClickListener(new OnClickListener() {
             @Override
@@ -138,7 +146,6 @@ public class ACWheelPickView extends FrameLayout {
                 mCityDate.put(firstLevelId, secondList);
             }
             JSONArray jsonArray = (JSONArray)params.get("select");
-            Log.i("array", jsonArray.getInt(0) + "  " + jsonArray.getInt(1) + "  " + jsonArray.getInt(2));
         } catch (JSONException e) {
             e.printStackTrace();
             Log.i("ACWheelPickView", "exception:" + e.getMessage());

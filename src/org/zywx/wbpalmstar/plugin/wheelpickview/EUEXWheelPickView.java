@@ -17,6 +17,7 @@ import org.json.JSONObject;
 import org.zywx.wbpalmstar.base.BUtility;
 import org.zywx.wbpalmstar.engine.EBrowserView;
 import org.zywx.wbpalmstar.engine.universalex.EUExBase;
+import org.zywx.wbpalmstar.engine.universalex.EUExUtil;
 
 import java.util.HashMap;
 
@@ -57,16 +58,17 @@ public class EUEXWheelPickView extends EUExBase{
         DisplayMetrics dm = mContext.getResources().getDisplayMetrics();
         try {
             jsonObject = new JSONObject(str);
-            boolean isValid = jsonObject.has("x") && jsonObject.has("y") && jsonObject.has("width") && jsonObject.has("height")
-                    && jsonObject.has("src") && jsonObject.has("select");
+            boolean isValid = jsonObject.has("src") && jsonObject.has("select");
             if(!isValid) {
                 errorCallback(0, 0, "error params!");
                 throw new JSONException("invalid params");
             }
-            x = jsonObject.getInt("x");
-            y = jsonObject.getInt("y");
-            width = jsonObject.getInt("width");
-            height = jsonObject.getInt("height");
+            x = jsonObject.optInt("x", 0);
+            //view的高度
+            int heightPx = EUExUtil.dipToPixels(250);
+            y = jsonObject.optInt("y", dm.heightPixels - heightPx);
+            width = jsonObject.optInt("width", dm.widthPixels);
+            height = jsonObject.optInt("height", heightPx);
             if (width > dm.widthPixels || width < 0) {
                 width = dm.widthPixels;
             }
