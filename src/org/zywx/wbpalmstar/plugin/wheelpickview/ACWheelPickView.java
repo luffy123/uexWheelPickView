@@ -94,6 +94,7 @@ public class ACWheelPickView extends FrameLayout {
                                 + WheelPickViewUtil.AREAPICKERVIEW_FUN_ON_CONFIRMCLICK
                                 + "('" + jsonObject.toString() + "');}";
                         mUexBaseObj.onCallback(js);
+                        mUexBaseObj.close(null);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
