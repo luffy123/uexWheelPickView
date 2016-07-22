@@ -141,6 +141,8 @@ public class ACWheelPickView extends FrameLayout {
                             thirdList.add(thirdArea);
                         }
                         mDistrictDate.put(secondLevelId, thirdList);
+                    } else {
+                        mDistrictView.setVisibility(View.GONE);
                     }
 
                 }
