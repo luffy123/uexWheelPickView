@@ -1,9 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <uexplugins>
     <plugin
-        uexName="uexWheelPickView" version="3.0.2" build="2">
-        <info>2:隐藏中间两条分隔线</info>
-        <build>1:点击"确定"按钮时，关闭选择器</build>
-        <build>0:通用选择器插件（uexWheelPickView）出新</build>
+        uexName="uexWheelPickView" version="4.0.0" build="0">
+        <info>0:通用选择器插件（uexWheelPickView）4.0 出新</info>
     </plugin>
 </uexplugins>
