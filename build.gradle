@@ -1,7 +1,44 @@
+/*
+ * Copyright (c) 2016.  The AppCan Open Source Project.
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *
+ */
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.2'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
 apply plugin: 'com.android.application'
 
 dependencies {
-    compile fileTree(dir: 'libs', include: '*.jar')
+    compile fileTree(include: '*.jar', dir: 'libs')
+    compile(name: 'Engine-system-release-4.0.0', ext: 'aar')
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 android {
@@ -14,7 +51,12 @@ android {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
     }
-
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 14 //
+        applicationId 'org.zywx.wbpalmstar.widgetone.uexTabIndicatorView'
+        //multiDexEnabled true
+    }
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -24,7 +66,7 @@ android {
             renderscript.srcDirs = ['src']
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
-            jniLibs.srcDirs=['libs']
+            jniLibs.srcDirs = ['libs']
         }
 
         // Move the tests to tests/java, tests/res, etc...
@@ -39,27 +81,14 @@ android {
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')
     }
+    productFlavors {
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_6
+        targetCompatibility JavaVersion.VERSION_1_6
+    }
 }
 
-def pluginName="uexWheelPickerView"
-def buildConfigPath="org/zywx/wbpalmstar/widgetone/"
+apply from: "https://raw.githubusercontent.com/android-plugin/gradle-plugin/master/buildPlugin.gradle"
 
-def jarDir=pluginName+'/jar/'
-def jarName="plugin_"+pluginName+".jar"
-def jarPath=jarDir+jarName
 
-task clearJar(type: Delete) {
-    delete jarPath;
-}
-
-task makeJar(type:Jar,dependsOn:['compileReleaseJavaWithJavac']) {
-    archiveName jarName
-    from('build/intermediates/classes/release/')
-    destinationDir=file(jarDir)
-    exclude('**/R.class')
-    exclude('**/R\$*.class')
-    exclude('**/BuildConfig.class')
-    exclude(buildConfigPath)
-}
-
-makeJar.dependsOn(clearJar)
