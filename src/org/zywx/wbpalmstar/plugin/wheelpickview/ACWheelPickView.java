@@ -112,6 +112,7 @@ public class ACWheelPickView extends FrameLayout {
         try {
             JSONArray array = new JSONArray(str);
             int len = array.length();
+            boolean hasThird = false;
             for (int i = 0; i < len; i ++) {
                 JSONObject firstLevel = array.getJSONObject(i);
                 AreaInfo areaInfo = new AreaInfo();
@@ -132,6 +133,7 @@ public class ACWheelPickView extends FrameLayout {
                     secondList.add(secondArea);
                     //解析获取第三类的数据
                     if (secondLevel.has(Third_LEVEL_NAME)) {
+                        hasThird = true;
                         JSONArray thirdLevel = secondLevel.getJSONArray(Third_LEVEL_NAME);
                         List<AreaInfo> thirdList = new ArrayList<AreaInfo>();
                         for (int k = 0; k < thirdLevel.length(); k ++) {
@@ -141,14 +143,13 @@ public class ACWheelPickView extends FrameLayout {
                             thirdList.add(thirdArea);
                         }
                         mDistrictDate.put(secondLevelId, thirdList);
-                    } else {
-                        mDistrictView.setVisibility(View.GONE);
                     }
-
                 }
                 mCityDate.put(firstLevelId, secondList);
             }
-            JSONArray jsonArray = (JSONArray)params.get("select");
+            if (!hasThird) {
+                mDistrictView.setVisibility(View.GONE);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
             Log.i("ACWheelPickView", "exception:" + e.getMessage());
