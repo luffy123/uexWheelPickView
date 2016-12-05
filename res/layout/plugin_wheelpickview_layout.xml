@@ -41,19 +41,19 @@
 
         <org.zywx.wbpalmstar.plugin.wheelpickview.PickerView
             android:id="@+id/plugin_wheelpickview_province"
-            android:layout_width="120dip"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
         <org.zywx.wbpalmstar.plugin.wheelpickview.PickerView
             android:id="@+id/plugin_wheelpickview_city"
-            android:layout_width="120dip"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
         <org.zywx.wbpalmstar.plugin.wheelpickview.PickerView
             android:id="@+id/plugin_wheelpickview_district"
-            android:layout_width="120dip"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
     </LinearLayout>

@@ -2,15 +2,14 @@ define(["CC"], function(CC) {
        if (!UNIT_TEST) {
        return;
        }
-       
+
        var uexWheelPickViewCase = {};
        uexWheelPickViewCase.open = function() {
           var params = {
                 x:0,
                 y:100,
-                width:window.screen.width,
                 height:300,
-                src:"res://test1.json",//"res://test.json"
+                src:"res://test.json",//"res://test.json"
                 select:[2,7]//[2,7,3]
        };
        uexWheelPickView.open(params);

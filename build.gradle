@@ -56,5 +56,9 @@ android {
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')
     }
+    defaultConfig {
+        applicationId  'org.zywx.wbpalmstar.plugin.wheelpickview'
+        multiDexEnabled  true
+    }
 }
 apply from: "https://raw.githubusercontent.com/android-plugin/gradle-plugin/master/buildPlugin.gradle"
