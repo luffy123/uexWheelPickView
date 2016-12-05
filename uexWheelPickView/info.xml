@@ -1,10 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿﻿<?xml version="1.0" encoding="utf-8"?>
 <uexplugins>
     <plugin
-        uexName="uexWheelPickView" version="3.0.3" build="3">
-        <info>3:解决某些情况下3级分类不能显示全的bug</info>
-        <build>2:隐藏中间两条分隔线</build>
-        <build>1:点击"确定"按钮时，关闭选择器</build>
-        <build>0:通用选择器插件（uexWheelPickView）出新</build>
+        uexName="uexWheelPickView" version="4.0.1" build="1">
+        <info>0:解决3级分类不能显示全的bug</info>
+        <build>0:通用选择器插件（uexWheelPickView）4.0 出新</build>
     </plugin>
 </uexplugins>
